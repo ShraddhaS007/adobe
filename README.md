@@ -6,7 +6,6 @@
 
 ---
 
-
 ##  Problem Statement
 
 Given a PDF document (max 50 pages), extract:
