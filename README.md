@@ -13,17 +13,6 @@ Given a PDF document (max 50 pages), extract:
 - **Headings** (classified into levels: H1, H2, H3)
 - **Page numbers** for each heading
 
-Output should be a valid JSON in the following format:
-```json
-{
-  "title": "Understanding AI",
-  "outline": [
-    { "level": "H1", "text": "Introduction", "page": 1 },
-    { "level": "H2", "text": "What is AI?", "page": 2 },
-    { "level": "H3", "text": "History of AI", "page": 3 }
-  ]
-}
-
 
 
 Approach
