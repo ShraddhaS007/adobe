@@ -15,7 +15,7 @@ Given a PDF document (max 50 pages), extract:
 
 
 
-Approach
+**Approach**
 
 This solution uses PyMuPDF (fitz) to parse PDF content.
 
@@ -29,7 +29,8 @@ Heading number patterns (e.g., 1., 1.1, 2.3.1, etc.)
 
 Exclusion of non-structural text (tables, headers, form labels)
 
-Key Steps
+**Key Steps**
+
 Title Extraction: Selects the largest prominent text on the first page.
 
 Heading Candidates: Identifies heading-like spans using style + structure.
@@ -38,32 +39,30 @@ Heading Classification: Uses rules for H1/H2/H3 detection.
 
 Filtering: Excludes repeated lines, small text, lowercased text, etc.
 
-Requirements
+**Requirements**
+
 Python 3.9+
 
 PyMuPDF
 
-Install via:
+**Install via:**
 
-bash
-Copy
-Edit
 pip install -r requirements.txt
-Docker Instructions
+
+**Docker Instructions**
+
 Build the Docker Image
-bash
-Copy
-Edit
+
 docker build --platform linux/amd64 -t pdfoutliner:challenge .
-Run the Container
-bash
-Copy
-Edit
+
+**Run the Container**
+
 docker run --rm \
   -v $(pwd)/input:/app/input \
   -v $(pwd)/output:/app/output \
   --network none \
   pdfoutliner:challenge
+  
 All .pdf files in /input will be processed.
 
 Corresponding .json outputs will be saved to /output.
@@ -71,11 +70,9 @@ Corresponding .json outputs will be saved to /output.
 Testing
 Example:
 
-bash
-Copy
-Edit
 /input/file01.pdf → /output/file01.json
-Performance:
+
+**Performance:**
 
 ≤ 10 seconds for 50-page documents
 
@@ -83,14 +80,14 @@ Runs entirely offline
 
 No model > 200MB used
 
-Tech Stack
+**Tech Stack**
 Python 3.9
 
 PyMuPDF (fitz)
 
 Docker (CPU-only, amd64)
 
-Constraints Met
+**Constraints Met**
  No external internet/API calls
 
  Compatible with amd64
@@ -103,5 +100,5 @@ Constraints Met
 
  Works fully offline
 
-Author
+**Author**
 Team Name: Binary Bits
