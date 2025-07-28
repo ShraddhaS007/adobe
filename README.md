@@ -24,7 +24,8 @@ Output should be a valid JSON in the following format:
   ]
 }
 Approach
-This solution uses PyMuPDF (fitz) to parse PDF content.
+
+vvssgiueiea
 
 Rather than relying solely on font size heuristics, the approach includes:
 
