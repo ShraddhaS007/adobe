@@ -23,9 +23,12 @@ Output should be a valid JSON in the following format:
     { "level": "H3", "text": "History of AI", "page": 3 }
   ]
 }
+
+
+
 Approach
 
-vvssgiueiea
+This solution uses PyMuPDF (fitz) to parse PDF content.
 
 Rather than relying solely on font size heuristics, the approach includes:
 
