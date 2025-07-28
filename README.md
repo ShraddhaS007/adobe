@@ -25,76 +25,90 @@ Output should be a valid JSON in the following format:
 }
 Approach
 This solution uses PyMuPDF (fitz) to parse PDF content.
-Instead of relying purely on font size heuristics, it emphasizes:
 
-Semantic filtering (capitalization, bullet patterns, keywords)
+Rather than relying solely on font size heuristics, the approach includes:
 
-Font weight (bold) and visual hierarchy
+Semantic filtering (capitalization, bullet patterns, keyword exclusions)
 
-Text patterns like 1., 1.1, 2.3.1, etc.
+Font weight (bold detection) and visual hierarchy
 
-Exclusion of non-headings (like table headers)
+Heading number patterns (e.g., 1., 1.1, 2.3.1, etc.)
 
-Key Steps:
-Title Extraction: Pick the largest visible text on the first page
+Exclusion of non-structural text (tables, headers, form labels)
 
-Heading Candidates: Analyze spans for boldness, font size, casing
+Key Steps
+Title Extraction: Selects the largest prominent text on the first page.
 
-Heading Classification: Assign H1/H2/H3 based on numeric patterns or style
+Heading Candidates: Identifies heading-like spans using style + structure.
 
-Filtering: Remove repeated, irrelevant or structural elements like table rows
+Heading Classification: Uses rules for H1/H2/H3 detection.
 
- Requirements
+Filtering: Excludes repeated lines, small text, lowercased text, etc.
+
+Requirements
 Python 3.9+
-
-Dependencies installed via requirements.txt:
 
 PyMuPDF
 
- Docker Instructions
- Build Docker Image
+Install via:
 
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Docker Instructions
+Build the Docker Image
+bash
+Copy
+Edit
 docker build --platform linux/amd64 -t pdfoutliner:challenge .
- Run the Container
-
+Run the Container
+bash
+Copy
+Edit
 docker run --rm \
   -v $(pwd)/input:/app/input \
   -v $(pwd)/output:/app/output \
   --network none \
   pdfoutliner:challenge
-All .pdf files in /input will be processed
+All .pdf files in /input will be processed.
 
-Corresponding .json files will be saved to /output
+Corresponding .json outputs will be saved to /output.
 
- Testing
+Testing
 Example:
 
+bash
+Copy
+Edit
 /input/file01.pdf → /output/file01.json
-Run time: ≤10s for 50-page documents
-Works offline (no external calls)
-Model size: No external model used (no >200MB dependencies)
+Performance:
 
+≤ 10 seconds for 50-page documents
 
- Tech Stack
- Python 3.9
+Runs entirely offline
 
- PyMuPDF (fitz)
+No model > 200MB used
 
- Docker (CPU, amd64)
+Tech Stack
+Python 3.9
 
- Constraints Met
+PyMuPDF (fitz)
+
+Docker (CPU-only, amd64)
+
+Constraints Met
  No external internet/API calls
 
  Compatible with amd64
 
- Runs within 10 seconds for 50-page PDFs
+ ≤ 10 seconds runtime for 50-page PDFs
 
- Model size under 200MB (none used)
+ Model size ≤ 200MB (none used)
 
- Headings classified into H1/H2/H3
+ H1/H2/H3 heading classification
 
- Works offline
+ Works fully offline
 
- Author
-Team Name: [Binary Bits]
-
+Author
+Team Name: Binary Bits
